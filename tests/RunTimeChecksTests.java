@@ -4,21 +4,22 @@ import static junit.framework.Assert.assertTrue;
 public class RunTimeChecksTests {
 
     private static final String message = "The object is null";
+    private static final String invalidRuntimeValue = "Invalid runtime value";
 
     @Test (expected = NullPointerException.class)
-    public void checkNullThrowingExceptionTest(){
-        RunTimeChecks.checkNull(null,message);
+    public void checkNotNullThrowingExceptionTest(){
+        RunTimeChecks.checkNotNull(null, message);
     }
 
     @Test
-    public void checkNullPositiveResultTest(){
-        RunTimeChecks.checkNull("Any string",message);
+    public void checkNotNullPositiveResultTest(){
+        RunTimeChecks.checkNotNull("Any string", message);
     }
 
     @Test
-    public void checkNullExceptionMessage(){
+    public void checkNotNullExceptionMessage(){
         try{
-            RunTimeChecks.checkNull(null,message);
+            RunTimeChecks.checkNotNull(null, message);
         } catch (Exception ex){
             String exMessage = ex.getMessage();
             /* The following tests will be break if any, even not harmful
@@ -30,11 +31,43 @@ public class RunTimeChecksTests {
             //Assert that class name is in the error message
             assertTrue(exMessage.contains("RunTimeChecksTests"));
             //Assert that the function name is in the error message
-            assertTrue(exMessage.contains("checkNullExceptionMessage"));
+            assertTrue(exMessage.contains("checkNotNullExceptionMessage"));
             //Assert that the file name is in the error message
             assertTrue(exMessage.contains("RunTimeChecksTests.java"));
             //Assert that the line number is in the error message
-            assertTrue(exMessage.contains("21"));
+            assertTrue(exMessage.contains("22"));
         }
+    }
+
+    @Test (expected = IntegerDomainError.class)
+    public void checkGreaterThanTestLessCase(){
+        RunTimeChecks.checkGreaterThan(5,6,invalidRuntimeValue);
+    }
+
+    @Test (expected = IntegerDomainError.class)
+    public void checkGreaterThanTestEqualCase(){
+        RunTimeChecks.checkGreaterThan(5,5,invalidRuntimeValue);
+    }
+
+    @Test
+    public void checkGreaterThanTestGreaterCase(){
+        RunTimeChecks.checkGreaterThan(6,5,invalidRuntimeValue);
+    }
+
+    @Test (expected = IntegerDomainError.class)
+    public void checkWithinIntervalInclusiveLessThanMin(){
+        RunTimeChecks.checkWithinIntervalInclusive(5,7,10,invalidRuntimeValue);
+    }
+
+    @Test (expected = IntegerDomainError.class)
+    public void checkWithinIntervalInclusiveGreaterThanMax(){
+        RunTimeChecks.checkWithinIntervalInclusive(11,7,10,invalidRuntimeValue);
+    }
+
+    @Test
+    public void checkWithinIntervalInclusiveWithin(){
+        RunTimeChecks.checkWithinIntervalInclusive(7,7,10,invalidRuntimeValue);
+        RunTimeChecks.checkWithinIntervalInclusive(9,7,10,invalidRuntimeValue);
+        RunTimeChecks.checkWithinIntervalInclusive(10,7,10,invalidRuntimeValue);
     }
 }
