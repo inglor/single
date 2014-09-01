@@ -6,47 +6,47 @@ public class OneDimensionScannerTests {
 
     @Test (expected = IntegerDomainError.class)
     public void oneDimensionScannerConstructorExceptionCellsNumberTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(0,5);
+        Scanner oneDimensionScanner = new OneDimensionScanner(0,5);
         RunTimeChecks.suppressUnusedVariableGitWarning(oneDimensionScanner); //this line will never be executed
     }
 
     @Test (expected = IntegerDomainError.class)
     public void oneDimensionScannerConstructorExceptionPositionLessTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(10,-1);
+        Scanner oneDimensionScanner = new OneDimensionScanner(10,-1);
         RunTimeChecks.suppressUnusedVariableGitWarning(oneDimensionScanner); //this line will never be executed
     }
 
     @Test (expected = IntegerDomainError.class)
     public void oneDimensionScannerConstructorExceptionPositionMoreTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(10,11);
+        Scanner oneDimensionScanner = new OneDimensionScanner(10,11);
         RunTimeChecks.suppressUnusedVariableGitWarning(oneDimensionScanner); //this line will never be executed
     }
 
     @Test
     public void oneDimensionScannerInitialSetTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(10,0);
+        Scanner oneDimensionScanner = new OneDimensionScanner(10,0);
         assertEquals("Check initial current position",0,oneDimensionScanner.getCurrentPosition().getX());
         assertEquals("Check initial current position",0,oneDimensionScanner.getCurrentPosition().getY());
 
-        OneDimensionScanner oneDimensionScanner1 = new OneDimensionScanner(10,4);
+        Scanner oneDimensionScanner1 = new OneDimensionScanner(10,4);
         assertEquals("Check initial current position",4,oneDimensionScanner1.getCurrentPosition().getX());
         assertEquals("Check initial current position",0,oneDimensionScanner1.getCurrentPosition().getY());
 
-        OneDimensionScanner oneDimensionScanner2 = new OneDimensionScanner(10,9);
+        Scanner oneDimensionScanner2 = new OneDimensionScanner(10,9);
         assertEquals("Check initial current position",9,oneDimensionScanner2.getCurrentPosition().getX());
         assertEquals("Check initial current position",0,oneDimensionScanner2.getCurrentPosition().getY());
     }
 
     @Test (expected = IntegerDomainError.class)
     public void oneDimensionScannerSetNewPositionInvalidTooBigTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(10,0);
+        Scanner oneDimensionScanner = new OneDimensionScanner(10,0);
         Position newPosition = new Position(10,0);
         oneDimensionScanner.setNewPosition(newPosition);
     }
 
     @Test
     public void oneDimensionScannerSetNewPositionTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(10,0);
+        Scanner oneDimensionScanner = new OneDimensionScanner(10,0);
 
         assertEquals("Check initial current position",0,oneDimensionScanner.getCurrentPosition().getX());
         assertEquals("Check initial current position",0,oneDimensionScanner.getCurrentPosition().getY());
@@ -70,7 +70,7 @@ public class OneDimensionScannerTests {
 
     @Test
     public void oneDimensionScannerNextTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(5,2);
+        Scanner oneDimensionScanner = new OneDimensionScanner(5,2);
 
         assertEquals("Check initial current position",2,oneDimensionScanner.getCurrentPosition().getX());
         assertEquals("Check initial current position",0,oneDimensionScanner.getCurrentPosition().getY());
@@ -109,7 +109,7 @@ public class OneDimensionScannerTests {
 
     @Test
     public void oneDimensionScannerResetTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(5,2);
+        Scanner oneDimensionScanner = new OneDimensionScanner(5,2);
 
         assertEquals("Check initial current position",2,oneDimensionScanner.getCurrentPosition().getX());
         assertEquals("Check initial current position",0,oneDimensionScanner.getCurrentPosition().getY());
@@ -125,7 +125,7 @@ public class OneDimensionScannerTests {
 
     @Test
     public void oneDimensionScannerToStringTest(){
-        OneDimensionScanner oneDimensionScanner = new OneDimensionScanner(5,2);
+        Scanner oneDimensionScanner = new OneDimensionScanner(5,2);
         String oneDimensionalScannerText =
             "OneDimensionScanner{maxPosition=Position{x=4, y=0}, " +
             "current=Position{x=2, y=0}, startPosition=Position{x=2, y=0}}";
@@ -133,4 +133,14 @@ public class OneDimensionScannerTests {
         assertEquals("Check toString method",oneDimensionScanner.toString(),oneDimensionalScannerText);
     }
 
+    @Test
+    public void oneDimensionScannerSwitchScanningAxis(){
+        Scanner oneDimensionScanner = new OneDimensionScanner(5,2);
+
+        Position position = oneDimensionScanner.getCurrentPosition();
+        Position afterSwitchPosition = oneDimensionScanner.switchScanningAxis();
+
+        assertEquals("Check after switch scanning axis",afterSwitchPosition.getX(),position.getX());
+        assertEquals("Check after switch scanning axis",afterSwitchPosition.getY(),position.getY());
+    }
 }

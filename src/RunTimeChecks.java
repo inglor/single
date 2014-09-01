@@ -5,7 +5,7 @@ public class RunTimeChecks {
         checkNotNull(obj,"");
     }
 
-    static String hereAt(int levelUpInTheStack) {
+    static private String hereAt(int levelUpInTheStack) {
         StackTraceElement ste = Thread.currentThread().getStackTrace()[levelUpInTheStack];
         return ste.toString();
     }

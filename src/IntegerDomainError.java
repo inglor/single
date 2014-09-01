@@ -1,7 +1,7 @@
 public class IntegerDomainError extends RuntimeException {
 
-    private int runtimeValue;
-    private int constraint;
+    private final int runtimeValue;
+    private final int constraint;
 
     public IntegerDomainError(String message,int runtimeValue, int constraint){
         super(message);

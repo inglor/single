@@ -1,9 +1,9 @@
 public class OneDimensionScanner implements Scanner {
 
     private static final int VALUE_Y = 0;
-    private Position maxPosition;
+    private final Position maxPosition;
     private Position current;
-    private Position startPosition;
+    private final Position startPosition;
 
     public OneDimensionScanner(int numberOfCells,int initialPosition){
         RunTimeChecks.checkGreaterThan(numberOfCells, 0, "Error with the number of cells");
@@ -23,13 +23,13 @@ public class OneDimensionScanner implements Scanner {
         if (nextX > maxPosition.getX())
             nextX = 0;
         current = new Position(nextX,current.getY());
-        return new Position(nextX,current.getY());
+        return current;
     }
 
     @Override
     public Position reset() {
-        current = new Position(startPosition.getX(),startPosition.getY());
-        return new Position(startPosition.getX(),startPosition.getY());
+        current = startPosition;
+        return current;
     }
 
     @Override
@@ -40,12 +40,17 @@ public class OneDimensionScanner implements Scanner {
                 0,
                 maxPosition.getX(),
                 "Error with the initial position");
-        current = new Position(position.getX(),position.getY());
+        current = position;
     }
 
     @Override
     public Position getCurrentPosition() {
-        return new Position(current.getX(),current.getY());
+        return current;
+    }
+
+    @Override
+    public Position switchScanningAxis() {
+        return current;
     }
 
     @Override

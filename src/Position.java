@@ -1,7 +1,7 @@
 public class Position {
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private final static int MINIMUM_VALUE = -1;
 
     public Position(int x, int y){

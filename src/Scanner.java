@@ -7,4 +7,6 @@ public interface Scanner {
     public void setNewPosition(Position position);
 
     public Position getCurrentPosition();
+
+    public Position switchScanningAxis();
 }
