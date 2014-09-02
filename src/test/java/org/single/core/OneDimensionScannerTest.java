@@ -139,11 +139,7 @@ public class OneDimensionScannerTest {
     @Test
     public void oneDimensionScannerSwitchScanningAxis() {
         Scanner oneDimensionScanner = new OneDimensionScanner(5, 2);
-
-        Position position = oneDimensionScanner.getCurrentPosition();
-        Position afterSwitchPosition = oneDimensionScanner.switchScanningAxis();
-
-        assertEquals("Check after switch scanning axis", afterSwitchPosition.getX(), position.getX());
-        assertEquals("Check after switch scanning axis", afterSwitchPosition.getY(), position.getY());
+        assertEquals("Check after switch scanning axis", oneDimensionScanner.switchScanningAxis(),Axis.X);
+        assertEquals("Check after switch scanning axis", oneDimensionScanner.switchScanningAxis(),Axis.X);
     }
 }

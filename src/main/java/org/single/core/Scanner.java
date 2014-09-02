@@ -10,5 +10,5 @@ public interface Scanner {
 
     public Position getCurrentPosition();
 
-    public Position switchScanningAxis();
+    public Axis switchScanningAxis();
 }
