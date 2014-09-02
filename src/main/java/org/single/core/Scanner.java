@@ -1,3 +1,5 @@
+package org.single.core;
+
 public interface Scanner {
 
     public Position next();
