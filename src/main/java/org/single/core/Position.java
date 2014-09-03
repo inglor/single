@@ -3,7 +3,7 @@ package org.single.core;
 
 public class Position {
 
-    private final static int MINIMUM_VALUE = -1;
+    private static final int MINIMUM_VALUE = -1;
     private final int x;
     private final int y;
 

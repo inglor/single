@@ -10,7 +10,7 @@ public class RunTimeChecksTest {
     private static final String message = "The object is null";
     private static final String invalidRuntimeValue = "Invalid runtime value";
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void checkNotNullThrowingExceptionTest() {
         RunTimeChecks.checkNotNull(null, message);
     }

@@ -23,8 +23,9 @@ public class OneDimensionScanner implements Scanner {
     @Override
     public Position next() {
         int nextX = current.getX()+1;
-        if (nextX > maxPosition.getX())
+        if (nextX > maxPosition.getX()){
             nextX = 0;
+        }
         current = new Position(nextX,current.getY());
         return current;
     }

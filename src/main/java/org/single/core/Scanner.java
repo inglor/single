@@ -2,13 +2,13 @@ package org.single.core;
 
 public interface Scanner {
 
-    public Position next();
+    Position next();
 
-    public Position reset();
+    Position reset();
 
-    public void setNewPosition(Position position);
+    void setNewPosition(Position position);
 
-    public Position getCurrentPosition();
+    Position getCurrentPosition();
 
-    public Axis switchScanningAxis();
+    Axis switchScanningAxis();
 }

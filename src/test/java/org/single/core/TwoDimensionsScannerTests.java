@@ -17,7 +17,7 @@ public class TwoDimensionsScannerTests {
         RunTimeChecks.suppressUnusedVariableGitWarning(scanner);
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test (expected = IllegalArgumentException.class)
     public void constructorExceptionNullInitialPositionTest(){
         Scanner scanner = new TwoDimensionsScanner(null,new Position(5,4));
         RunTimeChecks.suppressUnusedVariableGitWarning(scanner);
@@ -42,7 +42,7 @@ public class TwoDimensionsScannerTests {
         assertEquals("Check initial Position",scanner.getCurrentPosition().getY(),2);
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test (expected = IllegalArgumentException.class)
     public void setNewPositionNullExceptionTest(){
         Scanner scanner = new TwoDimensionsScanner(new Position(1,2),new Position(5,4));
 

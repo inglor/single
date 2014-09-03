@@ -3,19 +3,22 @@ package org.single.core;
 
 public class RunTimeChecks {
 
+    private RunTimeChecks(){
+    }
+
     public static void suppressUnusedVariableGitWarning(Object obj) {
         checkNotNull(obj, "");
     }
 
-    static private String hereAt(int levelUpInTheStack) {
+    private static String hereAt(int levelUpInTheStack) {
         StackTraceElement ste = Thread.currentThread().getStackTrace()[levelUpInTheStack];
         return ste.toString();
     }
 
     public static void checkNotNull(Object toCheck, String message) {
-        int levelUpInTheStack = 3;
+        final int levelUpInTheStack = 3;
         if (toCheck == null) {
-            throw new NullPointerException(hereAt(levelUpInTheStack) + " error: " + message);
+            throw new IllegalArgumentException(hereAt(levelUpInTheStack) + " error: " + message);
         }
     }
 
