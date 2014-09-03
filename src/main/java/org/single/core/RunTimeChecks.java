@@ -1,7 +1,7 @@
 package org.single.core;
 
 
-public class RunTimeChecks {
+final public class RunTimeChecks {
 
     private RunTimeChecks(){
     }
