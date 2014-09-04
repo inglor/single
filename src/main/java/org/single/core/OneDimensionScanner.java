@@ -22,10 +22,7 @@ public class OneDimensionScanner implements Scanner {
 
     @Override
     public Position next() {
-        int nextX = current.getX()+1;
-        if (nextX > maxPosition.getX()){
-            nextX = 0;
-        }
+        int nextX = moveNextOneDimension(current.getX(),maxPosition.getX());
         current = new Position(nextX,current.getY());
         return current;
     }
@@ -64,5 +61,13 @@ public class OneDimensionScanner implements Scanner {
                 ", current=" + current +
                 ", startPosition=" + startPosition +
                 '}';
+    }
+
+    static int moveNextOneDimension(int current,int maxPosition){
+        int nextX = current+1;
+        if (nextX > maxPosition){
+            nextX = 0;
+        }
+        return nextX;
     }
 }

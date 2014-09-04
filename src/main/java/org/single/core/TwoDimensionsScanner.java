@@ -25,10 +25,24 @@ public class TwoDimensionsScanner implements Scanner {
         this.current = initialPosition;
     }
 
-    /* TODO */
     @Override
     public Position next() {
-        return null;
+        if (scanningAxis==Axis.X){
+            return nextOnAxisX();
+        }
+        return nextOnAxisY();
+    }
+
+    private Position nextOnAxisX() {
+        int nextX  = OneDimensionScanner.moveNextOneDimension(current.getX(),maxPosition.getX());
+        current = new Position(nextX,current.getY());
+        return current;
+    }
+
+    private Position nextOnAxisY() {
+        int nextY = OneDimensionScanner.moveNextOneDimension(current.getY(),maxPosition.getY());
+        current = new Position(current.getX(),nextY);
+        return current;
     }
 
     @Override

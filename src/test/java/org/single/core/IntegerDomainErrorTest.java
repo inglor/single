@@ -12,9 +12,9 @@ public class IntegerDomainErrorTest {
         String errorMessage = "Error message";
         IntegerDomainError integerDomainError = new IntegerDomainError(errorMessage, 5, 7);
 
-        assertEquals("Check error message", integerDomainError.getMessage(), errorMessage);
-        assertEquals("Check runtime value", integerDomainError.getRuntimeValue(), 5);
-        assertEquals("Check error message", integerDomainError.getConstraint(), 7);
+        assertEquals("Check error message", errorMessage, integerDomainError.getMessage());
+        assertEquals("Check runtime value", 5, integerDomainError.getRuntimeValue());
+        assertEquals("Check error message", 7, integerDomainError.getConstraint());
     }
 }
 
