@@ -1,9 +1,12 @@
+package org.single.core;
+
 public class OneDimensionScanner implements Scanner {
 
     private static final int VALUE_Y = 0;
     private final Position maxPosition;
     private Position current;
     private final Position startPosition;
+    private Axis scanningAxis = Axis.X;
 
     public OneDimensionScanner(int numberOfCells,int initialPosition){
         RunTimeChecks.checkGreaterThan(numberOfCells, 0, "Error with the number of cells");
@@ -19,9 +22,7 @@ public class OneDimensionScanner implements Scanner {
 
     @Override
     public Position next() {
-        int nextX = current.getX()+1;
-        if (nextX > maxPosition.getX())
-            nextX = 0;
+        int nextX = moveNextOneDimension(current.getX(),maxPosition.getX());
         current = new Position(nextX,current.getY());
         return current;
     }
@@ -49,8 +50,8 @@ public class OneDimensionScanner implements Scanner {
     }
 
     @Override
-    public Position switchScanningAxis() {
-        return current;
+    public Axis switchScanningAxis() {
+        return scanningAxis;
     }
 
     @Override
@@ -60,5 +61,13 @@ public class OneDimensionScanner implements Scanner {
                 ", current=" + current +
                 ", startPosition=" + startPosition +
                 '}';
+    }
+
+    static int moveNextOneDimension(int current,int maxPosition){
+        int nextX = current+1;
+        if (nextX > maxPosition){
+            nextX = 0;
+        }
+        return nextX;
     }
 }
